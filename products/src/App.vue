@@ -1,0 +1,1 @@
+<template><div>From Product Module</div></template>
