@@ -1,10 +1,8 @@
 <template>
-    <div>This application is the host for the below two other application, showing how micro frontend architecture is used.</div>
-    <Products/>
-    <Cart/>
+  <router-view />
 </template>
 <script setup>
- import {defineAsyncComponent} from "vue";
- const Products = defineAsyncComponent(() => import("products/Products"));
- const Cart = defineAsyncComponent(() => import("cart/Cart"))
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 </script>
