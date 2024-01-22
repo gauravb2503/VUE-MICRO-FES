@@ -2,13 +2,21 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
-    productMessage: 'Testing Product state',
+    productList: [
+      {
+        id: 1,
+        name: 'Iphone12'
+      },
+      {
+        id: 2,
+        name: 'Iphone15'
+      }
+    ]
   },
   mutations: {
-    // mutations for the product module
   },
   actions: {
-    // actions for the product module
+    
   },
 });
 

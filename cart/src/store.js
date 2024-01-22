@@ -2,16 +2,17 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
-    cartItems: [1],
+    cartItems: [{
+      id: 1,
+      name: 'Iphone12'
+    },],
   },
   mutations: {
-    addToCart(state, item) {
-      state.cartItems.push(item);
+    addToCart(state, product) {
+      state.cartItems.push(product);
     },
-    // other mutations as needed
   },
   actions: {
-    // actions as needed
   },
 });
 

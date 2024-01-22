@@ -14,8 +14,9 @@ export default defineConfig({
       remotes: {
         'products': 'http://localhost:3002/dist/assets/products.js',
         'cart': 'http://localhost:3001/dist/assets/cart.js',
+        'eventBus': './src/eventBus.js', 
       },
-      shared: ['vue', 'vuex']
+      shared: ['vue', 'vuex'],
     }),
   ],
   build: {

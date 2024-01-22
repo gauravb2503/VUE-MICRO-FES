@@ -1,15 +1,27 @@
 <template>
-    <div>From Product Module</div>
-    <div>Product Message: {{ productMessage }}</div>
+  <div>
+    From Product Module
+    <div v-for="product in productList" :key="product.id">
+      <span>{{ product.name }}</span>
+      <button @click="addToCart(product)">Add to cart</button>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { ref, onMounted, inject } from 'vue';
+import { ref, inject, onMounted } from 'vue';
+// import { eventBus } from 'eventBus';
+
 
 const store = inject('store');
-const productMessage = ref('');
+const productList = ref([]);
 
 onMounted(() => {
-  productMessage.value = store.state.productMessage;
+  productList.value = store.state.productList;
 });
+
+
+function addToCart(product) {
+  eventBus.emit('addToCart', product);
+}
 </script>

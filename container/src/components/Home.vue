@@ -1,6 +1,12 @@
 <script setup>
-import { ref } from 'vue'
+import Cart from './Cart.vue';
+import Products from './Products.vue'
 
 </script>
 
-<template>This is Home page</template>
+<template>
+    Shopping App
+    <Products />
+    <hr>
+    <Cart />
+</template>
