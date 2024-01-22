@@ -14,8 +14,10 @@ export default defineConfig({
       filename: 'products.js',
       exposes: {
         './Products': './src/App.vue',
+        './Store': './src/store.js'
       },
-      shared: ['vue']
+      shared: ['vue', 'vuex'],
+      cors: true
     }),
   ],
   build: {

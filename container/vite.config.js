@@ -13,9 +13,9 @@ export default defineConfig({
       name: 'ShoppingApp',
       remotes: {
         'products': 'http://localhost:3002/dist/assets/products.js',
-        'cart': 'http://localhost:3001/dist/assets/cart.js'
+        'cart': 'http://localhost:3001/dist/assets/cart.js',
       },
-      shared: ['vue']
+      shared: ['vue', 'vuex']
     }),
   ],
   build: {

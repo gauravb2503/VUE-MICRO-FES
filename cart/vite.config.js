@@ -14,8 +14,10 @@ export default defineConfig({
       filename: 'cart.js',
       exposes: {
         './Cart': './src/App.vue',
+        './Store': './src/store.js'
       },
-      shared: ['vue']
+      shared: ['vue', 'vuex'],
+      cors: true
     }),
   ],
   build: {
