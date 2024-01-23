@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "name": "vue-micro-fes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "build-all": "cd products && npm run build && cd ../cart && npm run build && cd ../container && npm run build",
+    "dev-all": "concurrently \"cd products && npm run dev\" \"cd cart && npm run dev\" \"cd container && npm run dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
