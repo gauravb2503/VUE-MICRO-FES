@@ -1,8 +1,20 @@
 <script setup>
-import {defineAsyncComponent} from "vue";
+import {defineAsyncComponent, onMounted} from "vue";
 const Cart = defineAsyncComponent(() => import("cart/Cart"));
 const Products = defineAsyncComponent(() => import("products/Products"));
-debugger;
+
+
+// accessing the store from different module
+import { useCartStore } from "cart/CartStore";
+import { useProductsStore } from "products/ProductStore";
+
+const cartStore = useCartStore();
+const productStore = useProductsStore();
+console.log(cartStore);
+
+onMounted(() => {
+  console.log(cartStore.getCartItems, productStore);
+});
 
 </script>
 

@@ -15,7 +15,7 @@ export default defineConfig({
         'products': 'http://localhost:3002/dist/assets/products.js',
         'cart': 'http://localhost:3001/dist/assets/cart.js'
       },
-      shared: ['vue']
+      shared: ['vue', 'pinia']
     }),
   ],
   build: {
