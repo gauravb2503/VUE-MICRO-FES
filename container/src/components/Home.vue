@@ -7,10 +7,12 @@ const Products = defineAsyncComponent(() => import("products/Products"));
 // accessing the store from different module
 import { useCartStore } from "cart/CartStore";
 import { useProductsStore } from "products/ProductStore";
+import eventEmitter from "products/EventEmitter"
 
 const cartStore = useCartStore();
 const productStore = useProductsStore();
 console.log(cartStore);
+debugger;
 
 onMounted(() => {
   console.log(cartStore.getCartItems, productStore);

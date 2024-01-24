@@ -14,7 +14,8 @@ export default defineConfig({
       filename: 'products.js',
       exposes: {
         './Products': './src/App.vue',
-        './ProductStore': './src/store/productStore.js'
+        './ProductStore': './src/store/productStore.js',
+        './EventEmitter': './src/eventEmitter.js'
       },
       shared: ['vue', 'pinia']
     }),
