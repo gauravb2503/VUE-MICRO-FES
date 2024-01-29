@@ -126,7 +126,7 @@ function proceedToCheckout() {
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 4px;
-    margin-left: 5px; /* Add some margin between the buttons */
+    margin-left: 5px;
   }
 
   .increase-button:hover {
@@ -140,7 +140,7 @@ function proceedToCheckout() {
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 4px;
-    margin-left: 5px; /* Add some margin between the buttons */
+    margin-left: 5px;
   }
 
   .decrease-button:hover {

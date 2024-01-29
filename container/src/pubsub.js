@@ -1,4 +1,3 @@
-// pubsub.js
 const globalListenersKey = '__pubsub_listeners__';
 
 const getGlobalListeners = () => {
