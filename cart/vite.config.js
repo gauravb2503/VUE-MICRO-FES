@@ -14,7 +14,8 @@ export default defineConfig({
       filename: 'cart.js',
       exposes: {
         './Cart': './src/App.vue',
-        './CartStore': './src/store/cartStore.js'
+        './CartStore': './src/store/cartStore.js',
+        './PubSub': './src/pubsub.js'
       },
       shared: ['vue', 'pinia']
     }),

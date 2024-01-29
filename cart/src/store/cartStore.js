@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useCartStore = defineStore('cart', {
   state: () => ({
-    cartItems: [{ id: 1, name: 'Product A', price: 20 },],
+    cartItems: [],
   }),
   getters: {
     getCartItems() {
@@ -11,7 +11,23 @@ export const useCartStore = defineStore('cart', {
   },
   actions: {
     addToCart(product) {
-      this.cartItems.push(product);
+      const existingProduct = this.cartItems.find(item => item.id === product.id);
+
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        this.cartItems.push({ ...product, quantity: 1 });
+      }
+    },
+    removeItem(product) {
+      const existingProduct = this.cartItems.find(item => item.id === product.id);
+
+      if (existingProduct) {
+        existingProduct.quantity -= 1;
+        if (existingProduct.quantity === 0) {
+          this.cartItems = this.cartItems.filter(item => item.id !== product.id);
+        }
+      }
     },
   },
 });
