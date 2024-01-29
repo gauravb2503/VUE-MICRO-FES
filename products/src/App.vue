@@ -10,16 +10,21 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { useProductsStore } from './store/productStore';
 import { pubsub } from './pubsub';
 
-const productsStore = useProductsStore();
-const products = ref(productsStore.getProducts);
+interface Product {
+  name: string;
+  id: number;
+  price: number;
+}
 
-const addProductToCart = (product) => {
-  console.log('Product added to cart by Products module:', product);
+const productsStore = useProductsStore();
+const products = ref<Product[]>(productsStore.getProducts);
+
+const addProductToCart = (product: Product) => {
   pubsub.publish('addToCart', product);
 };
 </script>

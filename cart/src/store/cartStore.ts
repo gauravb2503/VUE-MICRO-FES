@@ -1,16 +1,30 @@
 import { defineStore } from 'pinia';
 
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface CartItem extends Product {
+  quantity: number;
+}
+
+interface CartState {
+  cartItems: CartItem[];
+}
+
 export const useCartStore = defineStore('cart', {
-  state: () => ({
+  state: (): CartState => ({
     cartItems: [],
   }),
   getters: {
-    getCartItems() {
+    getCartItems(): CartItem[] {
       return this.cartItems;
     },
   },
   actions: {
-    addToCart(product) {
+    addToCart(product: Product): void {
       const existingProduct = this.cartItems.find(item => item.id === product.id);
 
       if (existingProduct) {
@@ -19,7 +33,7 @@ export const useCartStore = defineStore('cart', {
         this.cartItems.push({ ...product, quantity: 1 });
       }
     },
-    removeItem(product) {
+    removeItem(product: Product): void {
       const existingProduct = this.cartItems.find(item => item.id === product.id);
 
       if (existingProduct) {

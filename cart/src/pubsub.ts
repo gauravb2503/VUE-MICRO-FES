@@ -1,6 +1,18 @@
 const globalListenersKey = '__pubsub_listeners__';
 
-const getGlobalListeners = () => {
+
+declare global {
+  interface Window {
+    [globalListenersKey]: EventListeners;
+  }
+} 
+
+
+interface EventListeners {
+  [event: string]: Array<(data: any) => void>;
+}
+
+const getGlobalListeners = (): EventListeners => {
   if (!window[globalListenersKey]) {
     window[globalListenersKey] = {};
   }
@@ -8,7 +20,7 @@ const getGlobalListeners = () => {
 };
 
 export const pubsub = {
-  subscribe: (event, callback) => {
+  subscribe: (event: string, callback: (data: any) => void): void => {
     const listeners = getGlobalListeners();
 
     if (!listeners[event]) {
@@ -16,7 +28,7 @@ export const pubsub = {
     }
     listeners[event].push(callback);
   },
-  publish: (event, data) => {
+  publish: (event: string, data: any): void => {
     const listeners = getGlobalListeners();
 
     if (listeners[event]) {

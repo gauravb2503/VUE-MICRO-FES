@@ -16,24 +16,24 @@
   </div>
 </template>
 
-<script setup>
-import { defineAsyncComponent, onMounted } from "vue";
-import { useCartStore } from "cart/CartStore";
-import { useProductsStore } from "products/ProductStore";
+<script setup lang="ts">
+import { defineAsyncComponent, ref, onMounted } from 'vue';
+import { useCartStore } from 'cart/CartStore';
+import { useProductsStore } from 'products/ProductStore';
 import { pubsub } from 'products/PubSub';
 
-const Cart = defineAsyncComponent(() => import("cart/Cart"));
-const Products = defineAsyncComponent(() => import("products/Products"));
+const Cart = defineAsyncComponent(() => import('cart/Cart'));
+const Products = defineAsyncComponent(() => import('products/Products'));
 
 const cartStore = useCartStore();
 const productStore = useProductsStore();
 
-pubsub.subscribe('addToCart', (product) => {
+pubsub.subscribe('addToCart', (product: any) => {
   cartStore.addToCart(product);
   console.log('Product added to cart by container module:', product);
 });
 
-pubsub.subscribe('removeItem', (product) => {
+pubsub.subscribe('removeItem', (product: any) => {
   cartStore.removeItem(product);
 });
 
@@ -41,7 +41,6 @@ onMounted(() => {
   console.log(cartStore, productStore, pubsub);
 });
 </script>
-
 
 <style scoped>
   .shopping-app {

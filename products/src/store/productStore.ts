@@ -1,7 +1,17 @@
 import { defineStore } from 'pinia';
 
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface ProductsState {
+  products: Product[];
+}
+
 export const useProductsStore = defineStore('products', {
-  state: () => ({
+  state: (): ProductsState => ({
     products: [
       { id: 1, name: 'IPhone 13', price: 299 },
       { id: 2, name: 'Iphone 15 Plus', price: 699 },
@@ -11,7 +21,7 @@ export const useProductsStore = defineStore('products', {
     ],
   }),
   getters: {
-    getProducts() {
+    getProducts(): Product[] {
       return this.products;
     },
   },
