@@ -16,7 +16,7 @@
       </li>
       <li class="cart-item total-row">
         <span class="total-label">Total:</span>
-        <span class="total-price">{{ calculateTotal() }}</span>
+        <span class="total-price">${{ calculateTotal() }}</span>
       </li>
       <div class="checkout-container">
         <button @click="proceedToCheckout" class="checkout-button">Proceed to Checkout</button>

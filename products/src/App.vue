@@ -3,7 +3,7 @@
     <h1>Products App</h1>
     <ul class="product-list">
       <li v-for="product in products" :key="product.id" class="product-item">
-        <span class="product-info">{{ product.name }} - {{ product.price }}</span>
+        <span class="product-info">{{ product.name }} - ${{ product.price }}</span>
         <button @click="addProductToCart(product)" class="add-to-cart-button">Add to Cart</button>
       </li>
     </ul>
