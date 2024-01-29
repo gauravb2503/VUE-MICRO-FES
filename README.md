@@ -18,7 +18,7 @@ This project demonstrates a microfrontend architecture using Vite modern federat
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/vue-micro-fes.git
+git clone https://github.com/gauravb2503/VUE-MICRO-FES.git
 
 # Navigate to the project directory
 cd vue-micro-fes
