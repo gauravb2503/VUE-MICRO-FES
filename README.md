@@ -2,6 +2,10 @@
 
 This project demonstrates a microfrontend architecture using Vite modern federation. It consists of three modules: Container, Products, and Cart. The Container application consumes the Products and Cart modules. The application uses Pinia for store management and a Pub/Sub pattern for communication between modules.
 
+## Note
+- For Javascript support, you can stay with the master branch, here application is configured for JS.
+- For TypeScript support, you can switch to the feature/typescript-support, Here application is configured for TS.
+
 ## Project Structure
 
 - `container/`: Container application module.
