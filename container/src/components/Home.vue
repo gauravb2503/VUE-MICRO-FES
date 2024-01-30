@@ -4,14 +4,15 @@
       <h1>Shopping App</h1>
     </div>
     <hr>
-    <div>
-      <h3>Product Module</h3>
-      <Products />
-    </div>
-    <hr>
-    <div>
-      <h3>Cart Module</h3>
-      <Cart />
+    <div class="modules-container">
+      <div class="module">
+        <h3>Product Module</h3>
+        <Products />
+      </div>
+      <div class="module">
+        <h3>Cart Module</h3>
+        <Cart />
+      </div>
     </div>
   </div>
 </template>
@@ -45,7 +46,7 @@ onMounted(() => {
 <style scoped>
   .shopping-app {
     font-family: 'Arial', sans-serif;
-    max-width: 800px;
+    max-width: 70%;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -63,5 +64,15 @@ onMounted(() => {
     margin: 20px 0;
     border: none;
     border-top: 1px solid #ddd;
+  }
+
+  .modules-container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .module {
+    flex: 1;
+    margin: 0 10px;
   }
 </style>
