@@ -2,6 +2,9 @@
   "dependencies": {
     "concurrently": "^8.2.2"
   },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "name": "vue-micro-fes",
   "version": "1.0.0",
   "main": "index.js",
