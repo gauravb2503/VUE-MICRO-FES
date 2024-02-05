@@ -31,11 +31,12 @@ const productStore = useProductsStore();
 
 pubsub.subscribe('addToCart', (product: any) => {
   cartStore.addToCart(product);
-  console.log('Product added to cart by container module:', product);
+  productStore.manageQuantity(product, 'add');
 });
 
 pubsub.subscribe('removeItem', (product: any) => {
   cartStore.removeItem(product);
+  productStore.manageQuantity(product, 'remove')
 });
 
 onMounted(() => {

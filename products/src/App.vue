@@ -3,30 +3,56 @@
     <h1>Products App</h1>
     <ul class="product-list">
       <li v-for="product in products" :key="product.id" class="product-item">
-        <span class="product-info">{{ product.name }} - ${{ product.price }}</span>
-        <button @click="addProductToCart(product)" class="add-to-cart-button">Add to Cart</button>
+        <div class="product-info-container">
+          <span class="product-info">{{ product.name }} - ${{ product.price }}</span>
+          <span class="quantity-container">
+            Available Quantity: <span class="quantity-info">{{ product.quantity }}</span>
+          </span>
+        </div>
+        <button v-if="!getCartQuantity(product)" @click="addProductToCart(product)" class="add-to-cart-button">Add to Cart</button>
+        <div v-else class="quantity-controls">
+          <button @click="removeProductFromCart(product)" class="decrease-button">-</button>
+          <span class="quantity">{{ getCartQuantity(product) }}</span>
+          <button @click="addProductToCart(product)" :disabled="!product.quantity" class="increase-button">+</button>
+        </div>
       </li>
     </ul>
   </div>
 </template>
 
+
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useProductsStore } from './store/productStore';
 import { pubsub } from './pubsub';
+import { useCartStore } from 'cart/CartStore';
 
 interface Product {
   name: string;
   id: number;
   price: number;
+  quantity: number;
 }
 
 const productsStore = useProductsStore();
+const cartStore = useCartStore();
 const products = ref<Product[]>(productsStore.getProducts);
-
+const cartItems = computed(() => cartStore.getCartItems);
 const addProductToCart = (product: Product) => {
   pubsub.publish('addToCart', product);
 };
+
+function getCartQuantity(item: Product): number {
+  const cartItemInfo = cartItems.value.find(cartItem => cartItem.id === item.id)
+  if (cartItemInfo) {
+    return cartItemInfo.quantity;
+  }
+  return 0;
+}
+
+const removeProductFromCart = (product: Product) => {
+  pubsub.publish('removeItem', product);
+}
 </script>
 
 
@@ -64,6 +90,18 @@ const addProductToCart = (product: Product) => {
     flex-grow: 1;
   }
 
+  .quantity-info {
+    background-color: #28a745;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+
+  .quantity {
+    margin: 0 10px;
+  }
+
   .add-to-cart-button {
     background-color: #007bff;
     color: #fff;
@@ -73,7 +111,55 @@ const addProductToCart = (product: Product) => {
     border-radius: 4px;
   }
 
-  .add-to-cart-button:hover {
+  .increase-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .increase-button:hover:enabled {
     background-color: #0056b3;
+  }
+
+  .product-info-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .quantity-container {
+    margin-top: 5px;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+  }
+
+  .increase-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+  }
+
+  .increase-button:hover {
+    background-color: #218838;
+  }
+
+  .decrease-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+  }
+
+  .decrease-button:hover {
+    background-color: #c82333;
   }
 </style>
