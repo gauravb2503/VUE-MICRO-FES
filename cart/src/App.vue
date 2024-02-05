@@ -30,22 +30,32 @@ import { computed } from 'vue';
 import { useCartStore } from './store/cartStore';
 import { pubsub } from './pubsub';
 
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface CartItem extends Product {
+  quantity: number;
+}
+
 const cartStore = useCartStore();
 const cartItems = computed(() => cartStore.getCartItems);
 
-function decreaseQuantity(product) {
+function decreaseQuantity(product: Product): void {
   pubsub.publish('removeItem', product);
 }
 
-function increaseQuantity(product) {
+function increaseQuantity(product: Product): void {
   pubsub.publish('addToCart', product);
 }
 
-function calculateTotal() {
-  return cartItems.value.reduce((total, item) => total + item.price * item.quantity, 0);
+function calculateTotal(): number {
+  return cartItems.value.reduce((total: number, item: CartItem) => total + item.price * item.quantity, 0);
 }
 
-function proceedToCheckout() {
+function proceedToCheckout(): void {
   alert('This Feature is not yet developed.')
 }
 </script>
